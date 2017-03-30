@@ -11,7 +11,9 @@ template<class T>class ArrayBT{
 	int _root;
 	int _numNodes;
 	int size;
+	
 	stack<int>freeLocations;
+	void remove();
 	
 	private:
 }
