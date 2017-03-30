@@ -11,9 +11,10 @@ template<class T>class ArrayBT{
 	int _root;
 	int _numNodes;
 	int size;
-	
+	void insert(T data);
 	stack<int>freeLocations;
-	void remove();
+	void remove(T data);
+	int search(T data);
 	
 	private:
 }

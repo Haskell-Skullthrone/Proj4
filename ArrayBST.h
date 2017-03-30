@@ -7,12 +7,13 @@
 #include "ArrayBT.h"
 template<class T>class ArrayBST:virtual public ArrayBT<T>{
 	public:
-	void insert(Node<T>data);
-	void remove(Node<T>data);
+	void insert(T data);
+	void remove(T data);
 	void inOrder(ostream&s);
 	void postOrder(ostream&s);
-	void remove(Node<t>data);
 	int search(Node&t t);
 	void displayRaw(ostream&s);
+	
+	ArrayBST<T>(int size);
 	friend ostream&operator<<(ostream&s,ArrayBST<T>&a);
 }
