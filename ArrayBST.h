@@ -11,9 +11,9 @@ template<class T>class ArrayBST:virtual public ArrayBT<T>{
 	void remove(T data);
 	void inOrder(ostream&s);
 	void postOrder(ostream&s);
-	int search(Node&t t);
+	int search(T t);
 	void displayRaw(ostream&s);
 	
 	ArrayBST<T>(int size);
 	friend ostream&operator<<(ostream&s,ArrayBST<T>&a);
-}
+};

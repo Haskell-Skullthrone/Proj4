@@ -6,12 +6,12 @@
 using namespace std;
 template<class T>class Node{
 	public:
-	node();
-	node(dt*info,int left, int right);
-	node(node&n);
+	Node();
+	Node(T*info,int left, int right);
+	Node(Node&n);
 	private:
 	int left,right;
-	dt*info;
-	friend ostream& operator<<(ostream&s,Node&n);
-}
+	T*info;
+	friend ostream& operator<<(ostream&s,Node<T>&n);
+};
 	

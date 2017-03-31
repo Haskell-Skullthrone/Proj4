@@ -17,5 +17,5 @@ template<class T>class ArrayBT{
 	int search(T data);
 	
 	private:
-}
+};
 	
