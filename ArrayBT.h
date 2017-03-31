@@ -13,9 +13,27 @@ template<class T>class ArrayBT{
 	int size;
 	void insert(T data);
 	stack<int>freeLocations;
-	void remove(T data);
-	int search(T data);
+	void inOrder();
+	void postOrder();
 	
 	private:
 };
+template<class T> void ArrayBT<T>::inOrder(){
+	int pos = _root;
+	stack<int>traversedNodes;
+
+	do{
+		traversedNodes.push(pos);
+		pos=myBinaryTree[pos]->left;
+	}while(myBinaryTree[myBinaryTree[pos]->left]->info!=NULL);
+	cout<<*myBinaryTree[pos];
+	cout<<*myBinaryTree[traversedNodes.pop()];
+	do{
+		traversedNodes.push(pos);
+		pos=myBinaryTree[pos]->right;
+	}while(myBinaryTree[myBinaryTree[pos]->left]->info!=NULL);
+	cout<<*myBinaryTree[pos];
+	traversedNodes.pop();
+}
+
 	

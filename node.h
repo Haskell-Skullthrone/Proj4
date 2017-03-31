@@ -12,6 +12,10 @@ template<class T>class Node{
 	private:
 	int left,right;
 	T*info;
-	friend ostream& operator<<(ostream&s,Node<T>&n);
+	friend ostream& operator<<(ostream&s,Node<T> const&n);
 };
-	
+
+template<class T>ostream&operator<<(ostream&s,Node<T>const&n){
+	s<<*n.info<<'\n';
+	return s;
+}
