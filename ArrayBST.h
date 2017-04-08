@@ -15,3 +15,9 @@ template<class T>class ArrayBST:virtual public ArrayBT<T>{
 	ArrayBST<T>(int size);
 	friend ostream&operator<<(ostream&s,ArrayBST<T> const&a);
 };
+void template<Class T>class ArrayBST::insert(T data){
+	if(data>*_data)
+		insertLeft data;
+	else
+		insertRight data;
+}
