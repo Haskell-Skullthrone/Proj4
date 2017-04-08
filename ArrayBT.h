@@ -11,36 +11,38 @@ template<class T>class ArrayBT{
 	int _root;
 	int _numNodes;
 	int size;
-	void setLeft(T data,int pos);
-	void setRight(T data,int pos);
+	void insertLeft(T data,int pos);
+	void insertRight(T data,int pos);
 	stack<int>freeLocations;
 	void inOrder();
 	void postOrder();
 };
-template<class T> void insertLeft(T *data,int pos){
+template<class T> void ArrayBT<T>::insertLeft(T data,int pos){
 	if(myBinaryTree[pos]->left!=-1){
 		if(freeLocations.empty()){	
 			myBinaryTree[pos]->left=myBinaryTree.size();
-			myBinaryTree[myBinaryTree.size]=new Node(data,-1,-1);
+			myBinaryTree.push_back(new Node<T*>(new T(data),-1,-1));
 		}else{
-			myBinaryTree[pos]->left=freeLocations.peek());
-			myBinaryTree[freeLocations.pop()]=new Node(data,-1,-1);
+			myBinaryTree[pos]->left=freeLocations.top();
+			myBinaryTree[freeLocations.top()]=new Node<T*>(new T(data),-1,-1);
+			freeLocations.pop();
 		}
 	}else{
-		myBinaryTree[myBinaryTree[pos]-left]->info=data;
+		*(myBinaryTree[myBinaryTree[pos]->left]->info)=data;
 	}
 }
-template<class T> void insertRight(T *data,int pos){
+template<class T> void ArrayBT<T>::insertRight(T data,int pos){
 	if(myBinaryTree[pos]->right!=-1){
 		if(freeLocations.empty()){	
 			myBinaryTree[pos]->right=myBinaryTree.size();
-			myBinaryTree[myBinaryTree.size]=new Node(data,-1,-1);
+			myBinaryTree.push_back(new Node<T*>(new T(data),-1,-1));
 		}else{
-			myBinaryTree[pos]->right=freeLocations.peek());
-			myBinaryTree[freeLocations.pop()]=new Node(data,-1,-1);
+			myBinaryTree[pos]->right=freeLocations.top();
+			myBinaryTree[freeLocations.top()]=new Node<T*>(new T(data),-1,-1);
+			freeLocations.pop()
 		}
 	}else{
-		myBinaryTree[myBinaryTree[pos]-right]->info=data;
+		*(myBinaryTree[myBinaryTree[pos]->right]->info)=data;
 	}
 }
 template<class T> void ArrayBT<T>::inOrder(){
@@ -52,7 +54,8 @@ template<class T> void ArrayBT<T>::inOrder(){
 		pos=myBinaryTree[pos]->left;
 	}while(myBinaryTree[myBinaryTree[pos]->left]->info!=NULL);
 	cout<<*myBinaryTree[pos];
-	cout<<*myBinaryTree[traversedNodes.pop()];
+	cout<<*myBinaryTree[traversedNodes.top()];
+	traversedNodes.pop();
 	do{
 		traversedNodes.push(pos);
 		pos=myBinaryTree[pos]->right;

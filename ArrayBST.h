@@ -5,7 +5,7 @@
 #include<stack>
 #include "node.h"
 #include "ArrayBT.h"
-template<class T>class ArrayBST:virtual public ArrayBT<T>{
+template<class T>class ArrayBST:public ArrayBT<T>{
 	public:
 	void insert(T data);
 	void remove(T data);
@@ -15,9 +15,9 @@ template<class T>class ArrayBST:virtual public ArrayBT<T>{
 	ArrayBST<T>(int size);
 	friend ostream&operator<<(ostream&s,ArrayBST<T> const&a);
 };
-void template<Class T>class ArrayBST::insert(T data){
-	if(data>*_data)
-		insertLeft data;
+template<class T>void ArrayBST<T>::insert(T data){
+	if(data>*(this->myBinaryTree[this->_root]->info))
+		this->insertLeft(data,this->_root);
 	else
-		insertRight data;
+		this->insertRight(data,this->_root);
 }
