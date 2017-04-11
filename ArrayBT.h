@@ -16,6 +16,7 @@ template<class T>class ArrayBT{
 	stack<int>freeLocations;
 	void inOrder();
 	void postOrder();
+	void preOrder();
 };
 template<class T> void ArrayBT<T>::insertLeft(T data,int pos){
 	if(myBinaryTree[pos]->left!=-1){
@@ -39,7 +40,7 @@ template<class T> void ArrayBT<T>::insertRight(T data,int pos){
 		}else{
 			myBinaryTree[pos]->right=freeLocations.top();
 			myBinaryTree[freeLocations.top()]=new Node<T*>(new T(data),-1,-1);
-			freeLocations.pop()
+			freeLocations.pop();
 		}
 	}else{
 		*(myBinaryTree[myBinaryTree[pos]->right]->info)=data;
@@ -59,9 +60,25 @@ template<class T> void ArrayBT<T>::inOrder(){
 	do{
 		traversedNodes.push(pos);
 		pos=myBinaryTree[pos]->right;
-	}while(myBinaryTree[myBinaryTree[pos]->left]->info!=NULL);
+	}while(myBinaryTree[myBinaryTree[pos]->right]->info!=NULL);
 	cout<<*myBinaryTree[pos];
 	traversedNodes.pop();
+}
+
+//work in progress!
+template<class T> void ArrayBT<T>::postOrder(){
+	int pos = _root;
+	stack<int>traversedNodes;
+	
+	do{
+		traversedNodes.push(pos);
+		pos=myBinaryTree[pos]->left;
+	}while(myBinaryTree[myBinaryTree[pos]->left]->info!=NULL);
+	do{
+		traversedNodes.push(pos);
+		pos=myBinaryTree[pos]->right;
+	}while(myBinaryTree[myBinaryTree[pos]->right]->info!=NULL);
+	cout<<*myBinaryTree[pos];
 }
 
 	
