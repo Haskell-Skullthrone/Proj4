@@ -49,20 +49,19 @@ template<class T> void ArrayBT<T>::insertRight(T data,int pos){
 template<class T> void ArrayBT<T>::inOrder(){
 	int pos = _root;
 	stack<int>traversedNodes;
-
-	do{
-		traversedNodes.push(pos);
-		pos=myBinaryTree[pos]->left;
-	}while(myBinaryTree[myBinaryTree[pos]->left]->info!=NULL);
-	cout<<*myBinaryTree[pos];
-	cout<<*myBinaryTree[traversedNodes.top()];
-	traversedNodes.pop();
-	do{
-		traversedNodes.push(pos);
-		pos=myBinaryTree[pos]->right;
-	}while(myBinaryTree[myBinaryTree[pos]->right]->info!=NULL);
-	cout<<*myBinaryTree[pos];
-	traversedNodes.pop();
+	
+	while(!stack.empty()||myBinaryTree[pos]->info!=NULL){
+		if(myBinaryTree[pos]->info!=NULL){
+			traversedNodes.push(pos);
+			pos=myBinaryTree[pos]->left;
+		}else{
+			pos = traversedNodes.top();
+			traversedNodes.pop();
+			
+			cout<<*myBinaryTree[pos];
+			pos = myBinaryTree[pos]->right;
+		}
+	}
 }
 
 //work in progress!
