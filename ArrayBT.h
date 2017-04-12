@@ -50,7 +50,7 @@ template<class T> void ArrayBT<T>::inOrder(){
 	int pos = _root;
 	stack<int>traversedNodes;
 	
-	while(!stack.empty()||myBinaryTree[pos]->info!=NULL){
+	while(!traversedNodes.empty()||myBinaryTree[pos]->info!=NULL){
 		if(myBinaryTree[pos]->info!=NULL){
 			traversedNodes.push(pos);
 			pos=myBinaryTree[pos]->left;
@@ -64,20 +64,41 @@ template<class T> void ArrayBT<T>::inOrder(){
 	}
 }
 
-//work in progress!
 template<class T> void ArrayBT<T>::postOrder(){
 	int pos = _root;
 	stack<int>traversedNodes;
 	
-	do{
-		traversedNodes.push(pos);
-		pos=myBinaryTree[pos]->left;
-	}while(myBinaryTree[myBinaryTree[pos]->left]->info!=NULL);
-	do{
-		traversedNodes.push(pos);
-		pos=myBinaryTree[pos]->right;
-	}while(myBinaryTree[myBinaryTree[pos]->right]->info!=NULL);
-	cout<<*myBinaryTree[pos];
+	while(!traversedNodes.empty()||myBinaryTree[pos]->info!=NULL){
+		if(myBinaryTree[pos]->info!=NULL){
+			traversedNodes.push(pos);
+			pos=myBinaryTree[pos]->left;
+		}
+		else if(myBinaryTree[traversedNodes.peek()]->right!=NULL&&
+					pos!=myBinaryTree[pos]->right){
+			
+			pos=myBinaryTree[pos]->right;
+		}
+		else{
+			cout<<*myBinaryTree[pos];
+			pos = traversedNodes.top();
+			traversedNodes.pop();
+		}
+	}
 }
 
+template<class T>void ArrayBT<T>::preOrder(){
+	int pos = _root;
+	stack<int>traversedNodes;
 	
+	while(!traversedNodes.empty()||myBinaryTree[pos]->info!=NULL){
+		if(myBinaryTree[pos]->info!=NULL){
+			traversedNodes.push(pos);
+			pos=myBinaryTree[pos]->left;
+		}else{
+			pos = traversedNodes.top();
+			traversedNodes.pop();
+			cout<<*myBinaryTree[pos];
+			pos = myBinaryTree[pos]->right;
+		}
+	}
+}
