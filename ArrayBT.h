@@ -7,7 +7,7 @@
 using namespace std;
 template<class T>class ArrayBT{
 	public:
-	vector<Node<T*>*>myBinaryTree;
+	vector<Node<T>*>myBinaryTree;
 	int _root;
 	int _numNodes;
 	int size;
@@ -22,10 +22,10 @@ template<class T> void ArrayBT<T>::insertLeft(T data,int pos){
 	if(myBinaryTree[pos]->left!=-1){
 		if(freeLocations.empty()){	
 			myBinaryTree[pos]->left=myBinaryTree.size();
-			myBinaryTree.push_back(new Node<T*>(new T(data),-1,-1));
+			myBinaryTree.push_back(new Node<T>(new T(data),-1,-1));
 		}else{
 			myBinaryTree[pos]->left=freeLocations.top();
-			myBinaryTree[freeLocations.top()]=new Node<T*>(new T(data),-1,-1);
+			myBinaryTree[freeLocations.top()]=new Node<T>(new T(data),-1,-1);
 			freeLocations.pop();
 		}
 	}else{
@@ -36,10 +36,10 @@ template<class T> void ArrayBT<T>::insertRight(T data,int pos){
 	if(myBinaryTree[pos]->right!=-1){
 		if(freeLocations.empty()){	
 			myBinaryTree[pos]->right=myBinaryTree.size();
-			myBinaryTree.push_back(new Node<T*>(new T(data),-1,-1));
+			myBinaryTree.push_back(new Node<T>(new T(data),-1,-1));
 		}else{
 			myBinaryTree[pos]->right=freeLocations.top();
-			myBinaryTree[freeLocations.top()]=new Node<T*>(new T(data),-1,-1);
+			myBinaryTree[freeLocations.top()]=new Node<T>(new T(data),-1,-1);
 			freeLocations.pop();
 		}
 	}else{
@@ -73,7 +73,7 @@ template<class T> void ArrayBT<T>::postOrder(){
 			traversedNodes.push(pos);
 			pos=myBinaryTree[pos]->left;
 		}
-		else if(myBinaryTree[traversedNodes.peek()]->right!=NULL&&
+		else if(myBinaryTree[traversedNodes.top()]->right!=NULL&&
 					pos!=myBinaryTree[pos]->right){
 			
 			pos=myBinaryTree[pos]->right;
