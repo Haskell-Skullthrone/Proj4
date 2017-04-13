@@ -36,12 +36,12 @@ template<class T>class Node{
 	friend ostream& operator<<(ostream&s,Node<T> const&n);
 	
 	//overloaded comparison operators for searching
-	bool operator < (Node<T>n);
-	bool operator > (Node<T>n);
-	bool operator == (Node<T>n);
-	bool operator <=(Node<T>n);
-	bool operator >= (Node<T>n);
-	bool operator != (Node<T>n);
+	friend bool operator < (Node m,Node n);
+	friend bool operator > (Node m,Node n);
+	friend bool operator == (Node m,Node n);
+	friend bool operator <=(Node m,Node n);
+	friend bool operator >= (Node m,Node n);
+	friend bool operator != (Node m,Node n);
 };
 
 //outputs a nicely formatted version of the data
@@ -55,9 +55,22 @@ template<class T>void Node<T>::displayRaw(){
 	cout<<*info<<left<<right;
 }
 
-
-
-
-
-
-
+//comparison operators
+template<class T>bool operator <(Node<T>m, Node<T>n){
+	return *m.info<*n.info;
+}
+template<class T>bool operator >(Node<T>m, Node<T>n){
+	return *m.info>*n.info;
+}
+template<class T>bool operator ==(Node<T>m, Node<T>n){
+	return *m.info==*n.info;
+}
+template<class T>bool operator !=(Node<T>m, Node<T>n){
+	return *m.info!=*n.info;
+}
+template<class T>bool operator <=(Node<T>m, Node<T>n){
+	return *m.info<=*n.info;
+}
+template<class T>bool operator >=(Node<T>m, Node<T>n){
+	return *m.info >= *n.info;
+}
