@@ -12,7 +12,7 @@ int main(){
 	ArrayBST<int>tree=*new ArrayBST<int>(atoi(input.c_str()));
 	while(!cin.eof()){
 		char command;
-		cin>>command;
+		cin.get(command);
 		cin>>input;
 		switch(command){
 			case 'I':
@@ -28,7 +28,7 @@ int main(){
 			cout<<tree;
 			break;
 			case 'A':
-			tree.displayRaw(cout);
+			tree.displayRaw();
 			break;
 			default:
 			cout<<"ERROR: INPUT NOT RECOGNIZED";

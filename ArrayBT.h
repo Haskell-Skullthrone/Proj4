@@ -1,3 +1,4 @@
+
 #pragma once
 #include <iostream>
 #include <cstdlib>
@@ -14,9 +15,9 @@ template<class T>class ArrayBT{
 	void insertLeft(T data,int pos);
 	void insertRight(T data,int pos);
 	stack<int>freeLocations;
-	void inOrder();
-	void postOrder();
-	void preOrder();
+	const void inOrder();
+	const void postOrder();
+	const void preOrder();
 };
 template<class T> void ArrayBT<T>::insertLeft(T data,int pos){
 	if(myBinaryTree[pos]->left!=-1){
@@ -46,7 +47,7 @@ template<class T> void ArrayBT<T>::insertRight(T data,int pos){
 		*(myBinaryTree[myBinaryTree[pos]->right]->info)=data;
 	}
 }
-template<class T> void ArrayBT<T>::inOrder(){
+template<class T>const void ArrayBT<T>::inOrder(){
 	int pos = _root;
 	stack<int>traversedNodes;
 	
@@ -64,7 +65,7 @@ template<class T> void ArrayBT<T>::inOrder(){
 	}
 }
 
-template<class T> void ArrayBT<T>::postOrder(){
+template<class T>const void ArrayBT<T>::postOrder(){
 	int pos = _root;
 	stack<int>traversedNodes;
 	
@@ -73,7 +74,7 @@ template<class T> void ArrayBT<T>::postOrder(){
 			traversedNodes.push(pos);
 			pos=myBinaryTree[pos]->left;
 		}
-		else if(myBinaryTree[traversedNodes.top()]->right!=NULL&&
+		else if(myBinaryTree[traversedNodes.top()]->right!=-1&&
 					pos!=myBinaryTree[pos]->right){
 			
 			pos=myBinaryTree[pos]->right;
@@ -86,7 +87,7 @@ template<class T> void ArrayBT<T>::postOrder(){
 	}
 }
 
-template<class T>void ArrayBT<T>::preOrder(){
+template<class T>const void ArrayBT<T>::preOrder(){
 	int pos = _root;
 	stack<int>traversedNodes;
 	

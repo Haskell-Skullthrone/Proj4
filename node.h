@@ -33,15 +33,15 @@ template<class T>class Node{
 	
 	//oustput operators
 	void displayRaw();
-	friend ostream& operator<<(ostream&s,Node<T> const&n);
+	template<class t>friend ostream& operator<<(ostream&s,Node<t> const&n);
 	
 	//overloaded comparison operators for searching
-	friend bool operator < (Node m,Node n);
-	friend bool operator > (Node m,Node n);
-	friend bool operator == (Node m,Node n);
-	friend bool operator <=(Node m,Node n);
-	friend bool operator >= (Node m,Node n);
-	friend bool operator != (Node m,Node n);
+	template<class t>friend bool operator < (Node m,Node n);
+	template<class t>friend bool operator > (Node m,Node n);
+	template<class t>friend bool operator == (Node m,Node n);
+	template<class t>friend bool operator <=(Node m,Node n);
+	template<class t>friend bool operator >= (Node m,Node n);
+	template<class t>friend bool operator != (Node m,Node n);
 };
 
 //outputs a nicely formatted version of the data
